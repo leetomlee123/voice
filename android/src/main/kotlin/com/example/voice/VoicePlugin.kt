@@ -8,6 +8,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import mobile.Mobile
 import kotlinx.coroutines.*
+
 /** VoicePlugin */
 class VoicePlugin : FlutterPlugin, MethodCallHandler {
     /// The MethodChannel that will the communication between Flutter and native Android
@@ -22,7 +23,8 @@ class VoicePlugin : FlutterPlugin, MethodCallHandler {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "voice")
         channel.setMethodCallHandler(this)
     }
-    public suspend fun runProxy(port: String?,name: String?,ip: String?){
+
+    public suspend fun runProxy(port: String?, name: String?, ip: String?) {
         Mobile.run(port, name, ip)
     }
 
@@ -33,10 +35,11 @@ class VoicePlugin : FlutterPlugin, MethodCallHandler {
             var port: String? = call.argument<String>("port")
             var name: String? = call.argument<String>("name")
             var ip: String? = call.argument<String>("ip")
-
-            job = CoroutineScope(Dispatchers.IO).launch {
-                runProxy(port, name, ip)
-            }
+//            println(job==null)
+//            val cancel = job?.cancel()
+                job = CoroutineScope(Dispatchers.IO).launch {
+                    runProxy(port, name, ip)
+                }
 
 //            print(ip)
 //            suspend fun getImage(port: String?,name: String?,ip: String?,)  {
