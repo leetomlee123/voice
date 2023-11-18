@@ -37,6 +37,7 @@ class VoicePlugin : FlutterPlugin, MethodCallHandler {
             var ip: String? = call.argument<String>("ip")
 //            println(job==null)
 //            val cancel = job?.cancel()
+
                 job = CoroutineScope(Dispatchers.IO).launch {
                     runProxy(port, name, ip)
                 }
