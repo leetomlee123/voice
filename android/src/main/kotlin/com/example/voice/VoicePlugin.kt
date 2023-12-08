@@ -8,6 +8,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import mobile.Mobile
 import kotlinx.coroutines.*
+import java.lang.Exception
 
 /** VoicePlugin */
 class VoicePlugin : FlutterPlugin, MethodCallHandler {
@@ -25,7 +26,11 @@ class VoicePlugin : FlutterPlugin, MethodCallHandler {
     }
 
     public suspend fun runProxy(port: String?, name: String?, ip: String?) {
-        Mobile.run(port, name, ip)
+        try {
+            Mobile.run(port, name, ip)
+        }catch (e:Exception){
+            println(e.message)
+        }
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {
@@ -37,8 +42,7 @@ class VoicePlugin : FlutterPlugin, MethodCallHandler {
             var ip: String? = call.argument<String>("ip")
 //            println(job==null)
 //            val cancel = job?.cancel()
-
-                job = CoroutineScope(Dispatchers.IO).launch {
+            job = CoroutineScope(Dispatchers.IO).launch {
                     runProxy(port, name, ip)
                 }
 
@@ -53,19 +57,8 @@ class VoicePlugin : FlutterPlugin, MethodCallHandler {
 //            var pid:String= Mobile.run(port, name, ip)
             result.success("ok");
         } else if (call.method == "downApp") {
-//            println("onDestroy 正在执行")
-            Mobile.downApp("pid")
-//            println(job==null)
-//            val cancel = job?.cancel()
-            val cancel: Boolean = job?.cancel()?.let { true } ?: false
-//            println(cancel==null)
-//            println(cancel)
-            val isCancelled: Boolean = job?.cancel()?.let { true } ?: false
-//            if (cancel){
-//                println("ok")
-//            }else{
-//                println("false")
-//            }
+            job.cancel()
+
 
         } else {
             result.notImplemented()
