@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:voice_proxy/proxy.dart';
+import 'package:voice/proxy.dart';
 
 import 'voice_method_channel.dart';
 
@@ -29,6 +29,7 @@ abstract class VoicePlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
   Future<String?> run(Proxy params) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }

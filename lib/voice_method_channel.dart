@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:voice_proxy/proxy.dart';
+import 'package:voice/proxy.dart';
 
 import 'voice_platform_interface.dart';
 
@@ -27,8 +27,9 @@ class MethodChannelVoice extends VoicePlatform {
   }
 
   @override
-  Future<String?> downApp(String pid)async {
-    final sayHi = await  methodChannel.invokeMethod<String>('downApp',{'pid':pid});
+  Future<String?> downApp(String pid) async {
+    final sayHi =
+        await methodChannel.invokeMethod<String>('downApp', {'pid': pid});
     return sayHi;
   }
 }
