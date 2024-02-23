@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:voice/voice.dart';
-import 'package:voice/voice_platform_interface.dart';
-import 'package:voice/voice_method_channel.dart';
+import 'package:voice_proxy/voice.dart';
+import 'package:voice_proxy/voice_platform_interface.dart';
+import 'package:voice_proxy/voice_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockVoicePlatform

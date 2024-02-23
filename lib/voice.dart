@@ -1,4 +1,4 @@
-import 'package:voice/proxy.dart';
+import 'package:voice_proxy/proxy.dart';
 
 import 'voice_platform_interface.dart';
 

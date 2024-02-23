@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:voice/proxy.dart';
+import 'package:voice_proxy/proxy.dart';
 
 import 'voice_method_channel.dart';
 
